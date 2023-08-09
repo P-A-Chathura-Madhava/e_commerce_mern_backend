@@ -33,7 +33,7 @@ const loginUserCtrl = asyncHandler(async(req, res) => {
 });
 
 // Update a user
-// const updateAUser = asyncHandler(async (req, res) => {
+// const updatedUser = asyncHandler(async (req, res) => {
 //     const {id} = req.params;
 //     // First method
 //     try {
@@ -53,7 +53,7 @@ const loginUserCtrl = asyncHandler(async(req, res) => {
 // });
 
 // Second method
-const updateAUser = asyncHandler(async (req, res) => {
+const updatedUser = asyncHandler(async (req, res) => {
     console.log(req.user);
     const {_id} = req.user;
     // First method
@@ -84,12 +84,12 @@ const getAllUsers = asyncHandler(async (req, res) => {
 });
 
 // Get a user
-const getAUser = asyncHandler(async (req, res) => {
+const getaUser = asyncHandler(async (req, res) => {
     const {id} = req.params;
     try {
-        const getAUser = await User.findById(id);
+        const getaUser = await User.findById(id);
         res.json({
-            getAUser,
+            getaUser,
         });
     } catch (error) {
         throw new Error(error);
@@ -97,16 +97,16 @@ const getAUser = asyncHandler(async (req, res) => {
 });
 
 // Delete a user
-const deleteAUser = asyncHandler(async (req, res) => {
+const deleteaUser = asyncHandler(async (req, res) => {
     const {id} = req.params;
     try {
-        const deleteAUser = await User.findByIdAndDelete(id);
+        const deleteaUser = await User.findByIdAndDelete(id);
         res.json({
-            deleteAUser,
+            deleteaUser,
         });
     } catch (error) {
         throw new Error(error);
     }
 });
 
-module.exports = {createUser, loginUserCtrl, getAllUsers, getAUser, deleteAUser, updateAUser};
+module.exports = {createUser, loginUserCtrl, getAllUsers, getaUser, deleteaUser, updatedUser};
