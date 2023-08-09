@@ -33,11 +33,32 @@ const loginUserCtrl = asyncHandler(async(req, res) => {
 });
 
 // Update a user
+// const updateAUser = asyncHandler(async (req, res) => {
+//     const {id} = req.params;
+//     // First method
+//     try {
+//         const updatedUser = await User.findByIdAndUpdate(id, {
+//             firstname: req?.body?.firstname,
+//             lastname: req?.body?.lastname,
+//             email: req?.body?.email,
+//             mobile: req?.body?.mobile,
+//         },
+//         {
+//             new: true,
+//         });
+//         res.json(updatedUser);
+//     } catch (error) {
+//         throw new Error(error);
+//     }
+// });
+
+// Second method
 const updateAUser = asyncHandler(async (req, res) => {
-    const {id} = req.params;
-    // one way
+    console.log(req.user);
+    const {_id} = req.user;
+    // First method
     try {
-        const updatedUser = await User.findByIdAndUpdate(id, {
+        const updatedUser = await User.findByIdAndUpdate(_id, {
             firstname: req?.body?.firstname,
             lastname: req?.body?.lastname,
             email: req?.body?.email,
