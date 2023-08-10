@@ -3,6 +3,7 @@ const User = require('../models/userModel');
 const asyncHandler = require('express-async-handler');
 const validateMongoDbId = require('../utils/validateMongodbid');
 const { generateRefreshToken } = require('../config/refreshtoken');
+const jwt = require('jsonwebtoken');
 
 const createUser = asyncHandler(async (req, res) => {
     const email = req.body.email;
@@ -160,4 +161,20 @@ const unblockUser = asyncHandler(async(req, res) => {
         throw new Error(error);
     }
 });
-module.exports = {createUser, loginUserCtrl, getAllUsers, getaUser, deleteaUser, updatedUser, blockUser, unblockUser};
+
+// Handle refresh control token
+const handleRefreshToken = asyncHandler(async (req, res) => {
+    const cookie = req.cookies;
+    if (!cookie.refreshToken) throw new Error('No refresh token in cookies');
+    const refreshToken = cookie.refreshToken;
+    const user = await User.findOne({refreshToken});
+    if (!user) throw new Error('No refresh token present in db or not matched');
+    jwt.verify(refreshToken, process.env.JWT_SECRET, (err, decoded) => {
+        if (err || user.id !== decoded.id) {
+            throw new Error('There is something wrong with refresh token');
+        }
+        const accessToken = generateToken(user?._id);
+        res.json({accessToken});
+    });
+});
+module.exports = {createUser, loginUserCtrl, getAllUsers, getaUser, deleteaUser, updatedUser, blockUser, unblockUser, handleRefreshToken};
