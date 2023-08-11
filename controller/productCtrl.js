@@ -16,7 +16,6 @@ const createProduct = asyncHandler(async (req, res) => {
 
 const updateProduct = asyncHandler(async (req, res) => {
     const {id} = req.params;
-//     // First method
     try {
         const updatedProduct = await Product.findByIdAndUpdate(id, {
             title: req?.body?.title,
@@ -45,8 +44,15 @@ const getaProduct = asyncHandler(async (req, res) => {
 
 const getAllProduct = asyncHandler(async (req, res) => {
     try {
-        const getallProducts = await Product.find();
-        res.json(getallProducts);
+        const queryObj = {...req.query};
+        const excludeFields = ['page', 'sort', 'limit',' fields'];
+        excludeFields.forEach(el => delete queryObj[el]);
+        let queryStr = JSON.stringify(queryObj);
+        queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+        let query = Product.find(JSON.parse(queryStr));
+        
+        const product = await query;
+        res.json(product);
     } catch (error) {
         throw new Error(error);
     }
