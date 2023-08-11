@@ -28,9 +28,9 @@ const updateBlog = asyncHandler(async (req, res) => {
 const getBlog = asyncHandler(async (req, res) => {
     const { id } = req.params;
     try {
-      const getBlog = await Blog.findById(id);
-        // .populate("likes")
-        // .populate("dislikes");
+      const getBlog = await Blog.findById(id)
+        .populate("likes")
+        .populate("dislikes");
       const updateViews = await Blog.findByIdAndUpdate(
         id,
         {
