@@ -38,7 +38,7 @@ const getBlog = asyncHandler(async (req, res) => {
         },
         { new: true }
       );
-      res.json(updateViews);
+      res.json(getBlog);
     } catch (error) {
       throw new Error(error);
     }
