@@ -339,13 +339,12 @@ const userCart = asyncHandler(async (req, res) => {
   const { _id } = req.user;
   validateMongoDbId(_id);
   try {
-    
     let newCart = await new Cart({
       userId: _id,
       productId,
       color,
       price,
-      quantity
+      quantity,
     }).save();
     res.json(newCart);
   } catch (error) {
@@ -357,14 +356,26 @@ const getUserCart = asyncHandler(async (req, res) => {
   const { _id } = req.user;
   validateMongoDbId(_id);
   try {
-    const cart = await Cart.findOne({ orderby: _id }).populate(
-      "products.product"
-    );
+    const cart = await Cart.find({ userId: _id })
+      .populate("productId")
+      .populate("color");
     res.json(cart);
   } catch (error) {
     throw new Error(error);
   }
 });
+
+const removeProductFromCart = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  const {cartItemId} = req.params;
+  validateMongoDbId(_id);
+  try {
+    const deleteProductFromCart = await Cart.deleteOne({userId: _id, _id: cartItemId})
+    res.json(deleteProductFromCart);
+  } catch (error) {
+    throw new Error(error);
+  }
+})
 
 const emptyCart = asyncHandler(async (req, res) => {
   const { _id } = req.user;
@@ -532,4 +543,5 @@ module.exports = {
   updateOrderStatus,
   getAllOrders,
   getOrderByUserId,
+  removeProductFromCart,
 };
