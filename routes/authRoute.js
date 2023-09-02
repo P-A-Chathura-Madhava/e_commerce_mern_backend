@@ -1,5 +1,5 @@
 const express = require('express');
-const { createUser, loginUserCtrl, getAllUsers, getaUser, deleteaUser, updatedUser, blockUser, unblockUser, handleRefreshToken, logout, updatePassword, forgotPasswordToken, resetPassword, loginAdmin, getWishlist, saveAddress, userCart, getUserCart, emptyCart, applyCoupon, createOrder, getOrders, updateOrderStatus, getAllOrders, removeProductFromCart, updateProductQuantityFromCart } = require('../controller/userCtrl');
+const { createUser, loginUserCtrl, getAllUsers, getaUser, deleteaUser, updatedUser, blockUser, unblockUser, handleRefreshToken, logout, updatePassword, forgotPasswordToken, resetPassword, loginAdmin, getWishlist, saveAddress, userCart, getUserCart, emptyCart, applyCoupon, createOrder, getOrders, updateOrderStatus, getAllOrders, removeProductFromCart, updateProductQuantityFromCart, getMyOrders, getMonthWiseOrderIncome, getYearlyTotalOrders } = require('../controller/userCtrl');
 const { authMiddleware, isAdmin } = require('../middlewares/authMiddleware');
 const { checkout, paymentVerificaion } = require('../controller/paymentCtrl');
 const router = express.Router();
@@ -17,9 +17,12 @@ router.post("/order/paymentVerification", authMiddleware, paymentVerificaion);
 // router.post("/cart/cash-order", authMiddleware, createOrder);    ----
 router.post("/cart/create-order", authMiddleware, createOrder);
 router.get('/all-users', getAllUsers);
+router.get('/getmyorders',authMiddleware, getMyOrders);
 // router.get("/get-orders", authMiddleware, getOrders);
-// router.get("/getallorders", authMiddleware, isAdmin, getAllOrders);
+router.get("/getallorders", authMiddleware, isAdmin, getAllOrders);
 // router.post("/getorderbyuser/:id", authMiddleware, isAdmin, getAllOrders);
+router.get("/getMonthWiseOrderIncome", authMiddleware, getMonthWiseOrderIncome);
+router.get("/getyearlyorders", authMiddleware, getYearlyTotalOrders);
 router.get('/refresh', handleRefreshToken);
 router.get('/logout', logout);
 router.get("/wishlist", authMiddleware, getWishlist);
