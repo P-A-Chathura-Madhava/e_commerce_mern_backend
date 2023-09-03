@@ -437,7 +437,37 @@ const getMyOrders = asyncHandler(async (req, res) => {
 
 const getAllOrders = asyncHandler(async (req, res) => {
   try {
-    const orders = await Order.find().populate('user');
+    const orders = await Order.find().populate("user");
+    res.json({
+      orders,
+    });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+const getSingleOrders = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const orders = await Order.findOne({ _id: id }).populate(
+      "orderItems.product"
+    ).populate(
+      "orderItems.color"
+    );
+    res.json({
+      orders,
+    });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+const updateOrder = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const orders = await Order.findById(id);
+    orders.orderStatus = req.body.status;
+    await Order.save();
     res.json({
       orders,
     });
@@ -525,7 +555,7 @@ const getYearlyTotalOrders = asyncHandler(async (req, res) => {
       $group: {
         _id: null,
         count: { $sum: 1 },
-        amount: {$sum: "$totalPriceAfterDiscount"}
+        amount: { $sum: "$totalPriceAfterDiscount" },
       },
     },
   ]);
@@ -705,4 +735,6 @@ module.exports = {
   getMonthWiseOrderIncome,
   getYearlyTotalOrders,
   getAllOrders,
+  getSingleOrders,
+  updateOrder,
 };
