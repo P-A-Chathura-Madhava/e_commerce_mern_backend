@@ -34,6 +34,7 @@ router.delete("/delete-product-cart/:cartItemId", authMiddleware, removeProductF
 router.delete("/update-product-cart/:cartItemId/:newQuantity", authMiddleware, updateProductQuantityFromCart);
 // router.delete("/empty-cart", authMiddleware, emptyCart);
 router.get('/:id', getaUser);
+router.delete('/empty-cart', authMiddleware, emptyCart);
 router.delete('/:id', deleteaUser);
 // router.put("/order/update-order/:id", authMiddleware, isAdmin, updateOrderStatus);
 router.put('/edit-user', authMiddleware, updatedUser);
