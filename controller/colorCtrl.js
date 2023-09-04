@@ -50,4 +50,10 @@ const getallColor = asyncHandler(async (req, res) => {
     throw new Error(error);
   }
 });
-module.exports = {createColor, updateColor, deleteColor, getColor, getallColor};
+module.exports = {
+  createColor,
+  updateColor,
+  deleteColor,
+  getColor,
+  getallColor,
+};

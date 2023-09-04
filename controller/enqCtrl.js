@@ -50,4 +50,10 @@ const getallEnquiry = asyncHandler(async (req, res) => {
     throw new Error(error);
   }
 });
-module.exports = {createEnquiry, updateEnquiry, deleteEnquiry, getEnquiry, getallEnquiry};
+module.exports = {
+  createEnquiry,
+  updateEnquiry,
+  deleteEnquiry,
+  getEnquiry,
+  getallEnquiry,
+};

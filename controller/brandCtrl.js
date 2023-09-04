@@ -50,4 +50,10 @@ const getallBrand = asyncHandler(async (req, res) => {
     throw new Error(error);
   }
 });
-module.exports = {createBrand, updateBrand, deleteBrand, getBrand, getallBrand};
+module.exports = {
+  createBrand,
+  updateBrand,
+  deleteBrand,
+  getBrand,
+  getallBrand,
+};
