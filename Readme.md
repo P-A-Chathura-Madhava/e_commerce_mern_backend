@@ -1,7 +1,5 @@
 <a name="readme-top"></a>
 
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -10,22 +8,7 @@
   </a>
 
   <h3 align="center">MERN - ECommerce Application Backend API</h3>
-
-  <p align="center">
-    
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
-  </p>
 </div>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -53,11 +36,9 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
-## About The Project
 
+## About The Project
 
 In this projects a user can visit the websites, registers and login to the website. They can check all the products available for shopping, filter and search item based on different categories, and then add to cart. They can add multiple item to the cart and also plus or minus the quantity in the cart. Once the cart is updated, the user can proceed to checkout and click the credit card payment details to proceed. Once the payment is success the orders will be placed and users will be able to see the orders details in the orders section along with the shipping status of the product. In this part only focus on backend APIs of admins and users.
 
@@ -67,31 +48,29 @@ Note: The payment page is created only for demo purpose and its not fully integr
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 ### Built With
 
-* [![Express][Express.js]][https://expressjs.com/]
-* [![body-parser][body-parser]][https://www.npmjs.com/package/body-parser]
-* [![JWT][JWT.io]][https://jwt.io/]
-* [![Mongoose][mongoose]][https://mongoosejs.com/]
+- Express.js
+- body-parser
+- JWT
+- Mongoose
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- GETTING STARTED -->
-## ================ Software And Tools Required ================
 
-: Git
-: Node.js
-: MongoDB Server
-: Frontend API or Postman
+### Software And Tools Required
+
+- Git
+- Node.js
+- MongoDB Server
+- Frontend API or Postman
 
 ### Prerequisites
 
 Things you need to use the software and how to install them.
-* npm
+
+- npm
   ```sh
   npm install npm@latest -g
   ```
@@ -104,15 +83,33 @@ Things you need to use the software and how to install them.
    ```
 2. Install NPM packages
    ```sh
-   npm install
+   npm i bcrypt
+   npm i body-parser
+   npm i cloudinary
+   npm i cookie-parser
+   npm i cors
+   npm i dotenv
+   npm install express
+   npm i express-async-handler
+   npm i jsonwebtoken
+   npm install mongoose
+   npm i morgan
+   npm i multer
+   npm i nodemailer
+   npm i nodemon
+   npm i razorpay
+   npm i sharp
+   npm i slugify
+   npm i uniqid
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTACT -->
+
 ## Contact
 
-Chathura Madhava - [@linked_in](https://www.linkedin.com/in/chathura-madhava-126465191/)
+Chathura Madhava - [@https://www.linkedin.com/in/chathura-madhava-126465191/](https://www.linkedin.com/in/chathura-madhava-126465191/)
 
 Project Link: [https://github.com/P-A-Chathura-Madhava/e_commerce_mern_backend.git](https://github.com/P-A-Chathura-Madhava/e_commerce_mern_backend.git)
 
